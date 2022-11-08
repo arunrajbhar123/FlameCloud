@@ -2,32 +2,30 @@ import {
   ModalFooter,
   Button,
   ModalBody,
-  ModalCloseButton,
   ModalHeader,
   Modal,
   ModalOverlay,
   ModalContent,
   Text,
   Box,
-  Flex,
-  useDisclosure,
 } from "@chakra-ui/react";
-import { SmallAddIcon } from "@chakra-ui/icons";
 import { useState } from "react";
-
+import { Select } from "chakra-react-select";
+import dbMembers from "../db.json";
 export function BasicUsage({ isOpen, onClose, data }) {
   const [show, setShow] = useState({});
+  const dsa = [{ label: "Arun" }];
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal w="100%" isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent bg="gray.100">
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>SOP Access</ModalHeader>
 
           <ModalBody>
             {data?.map((el, index) => (
-              <Box>
+              <Box key={index}>
                 <Text
                   mb="2"
                   fontSize={"xl"}
@@ -38,13 +36,21 @@ export function BasicUsage({ isOpen, onClose, data }) {
                 </Text>
                 <Box bg="#fff" rounded="5" p="2" onClick={() => setShow(!show)}>
                   <Text fontSize="10">TEAMMATES</Text>
-
-                  <Flex justifyContent="space-between">
-                    <Text>Select Members</Text>
-                    <SmallAddIcon bg="gray" color="#fff" rounded="2" />
-                  </Flex>
+                  <Select
+                    isMulti
+                    // value={dsa}
+                    options={dbMembers.members}
+                    placeholder="Select Members"
+                    closeMenuOnSelect={false}
+                    outline="none"
+                    border="none"
+                    size="md"
+                    variant="unstyled"
+                    // leftIcon={
+                    //   <SmallAddIcon bg="gray" color="#fff" rounded="2" />
+                    // }
+                  />
                 </Box>
-                {show ? <Box>asdfg</Box> : null}
               </Box>
             ))}
           </ModalBody>

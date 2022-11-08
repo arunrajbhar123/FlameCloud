@@ -6,7 +6,11 @@
       "plans": [
         {
           "plan": "Google Drive",
-          "pointer": ["pointer 1", "pointer 1", "pointer 1"]
+          "pointer": [
+            { "text": "pointer 1", "status": false },
+            { "text": "pointer 1", "status": false },
+            { "text": "pointer 1", "status": false }
+          ]
         }
       ]
     },
@@ -16,9 +20,19 @@
       "plans": [
         {
           "plan": "Google Drive",
-          "pointer": ["pointer 1", "pointer 1", "pointer 1"]
+          "pointer": [
+            { "text": "pointer 1", "status": false },
+            { "text": "pointer 1", "status": false },
+            { "text": "pointer 1", "status": false }
+          ]
         }
       ]
     }
+  ],
+  "members": [
+    { "label": "Arun" },
+    { "label": "Suraj" },
+    { "label": "Anuj" },
+    { "label": "Akash" }
   ]
 }
