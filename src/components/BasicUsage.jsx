@@ -14,18 +14,17 @@ import { Select } from "chakra-react-select";
 import dbMembers from "../db.json";
 export function BasicUsage({ isOpen, onClose, data }) {
   const [show, setShow] = useState({});
-  const dsa = [{ label: "Arun" }];
-
+  const [members, setMembers] = useState(dbMembers.members);
   return (
     <>
-      <Modal w="100%" isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent bg="gray.100">
+        <ModalContent bg="gray.100" maxH="750px" overflow={"scroll"}>
           <ModalHeader>SOP Access</ModalHeader>
 
           <ModalBody>
             {data?.map((el, index) => (
-              <Box key={index}>
+              <Box key={index} >
                 <Text
                   mb="2"
                   fontSize={"xl"}
@@ -38,7 +37,7 @@ export function BasicUsage({ isOpen, onClose, data }) {
                   <Text fontSize="10">TEAMMATES</Text>
                   <Select
                     isMulti
-                    // value={dsa}
+                    onChange={() => setMembers(el.teams)}
                     options={dbMembers.members}
                     placeholder="Select Members"
                     closeMenuOnSelect={false}
@@ -46,9 +45,6 @@ export function BasicUsage({ isOpen, onClose, data }) {
                     border="none"
                     size="md"
                     variant="unstyled"
-                    // leftIcon={
-                    //   <SmallAddIcon bg="gray" color="#fff" rounded="2" />
-                    // }
                   />
                 </Box>
               </Box>

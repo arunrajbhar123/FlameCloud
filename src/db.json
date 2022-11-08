@@ -2,10 +2,21 @@
   "data": [
     {
       "name": "Marketing",
-      "teams": ["Arun", "Anuj", "Akash"],
+      "teams": [
+        { "label": "Anuj", "value": "V126" },
+        { "label": "Akash", "value": "V512" }
+      ],
       "plans": [
         {
           "plan": "Google Drive",
+          "pointer": [
+            { "text": "pointer 1", "status": false },
+            { "text": "pointer 1", "status": false },
+            { "text": "pointer 1", "status": false }
+          ]
+        },
+        {
+          "plan": "WordPress",
           "pointer": [
             { "text": "pointer 1", "status": false },
             { "text": "pointer 1", "status": false },
@@ -15,8 +26,8 @@
       ]
     },
     {
-      "name": "Marketing",
-      "teams": ["Arun", "Anuj", "Akash"],
+      "name": "Design",
+      "teams": [{ "label": "Akash", "value": "V512" }],
       "plans": [
         {
           "plan": "Google Drive",
@@ -30,9 +41,9 @@
     }
   ],
   "members": [
-    { "label": "Arun" },
-    { "label": "Suraj" },
-    { "label": "Anuj" },
-    { "label": "Akash" }
+    { "label": "Arun", "value": "V122" },
+    { "label": "Suraj", "value": "V152" },
+    { "label": "Anuj", "value": "V126" },
+    { "label": "Akash", "value": "V512" }
   ]
 }

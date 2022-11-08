@@ -6,9 +6,12 @@ import dbData from "./db.json";
 import { BasicUsage } from "./components/BasicUsage";
 import { useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
+import Create from "./components/Create";
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState(dbData);
+  const createoverlay = useDisclosure();
+  
   return (
     <Box px={[2, 4, 14]} py={[2, 4, 14]} maxW="1600px" m="auto">
       <Text fontSize={[10, 14]}>SOP</Text>
@@ -44,9 +47,20 @@ function App() {
             colorScheme="blue"
             size={["xs", "sm"]}
             display={["none", "block", "block"]}
+            onClick={() => {
+              createoverlay.onOpen();
+            }}
           >
             New Plan
           </Button>
+          <Create
+            onClose={createoverlay.onClose}
+            isOpen={createoverlay.isOpen}
+            title={"Plan Name"}
+            add={"main"}
+            setData={setData}
+            data={data}
+          />
           <Button
             fontSize={[10]}
             colorScheme="blue"

@@ -16,12 +16,17 @@ import {
   MenuGroup,
   MenuOptionGroup,
   MenuDivider,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { DragHandleIcon, SmallAddIcon } from "@chakra-ui/icons";
 import { HiEllipsisVertical } from "react-icons/hi2";
 import { useState } from "react";
+import Delete from "./Delete";
+import Create from "./Create";
 const Accordionbox = ({ data }) => {
-  const [show, setShow] = useState(false);
+  const [type, setType] = useState("");
+  const oprate = useDisclosure();
+  const addPointer = useDisclosure();
 
   return (
     <Accordion allowMultiple>
@@ -49,15 +54,23 @@ const Accordionbox = ({ data }) => {
               <MenuList>
                 <MenuItem>Edit Category</MenuItem>
                 <MenuItem>Manage Access</MenuItem>
-                <MenuItem colorScheme="red">Delete</MenuItem>
+                <MenuItem
+               
+                  onClick={() => {
+                    oprate.onOpen();
+                    setType("Delete Category");
+                  }}
+                >
+                  Delete
+                </MenuItem>
               </MenuList>
             </Menu>
             <AccordionIcon />
           </AccordionButton>
         </h2>
         <AccordionPanel>
-          {data.plans?.map((el) => (
-            <Accordion allowMultiple position="relative">
+          {data?.plans?.map((el,id) => (
+            <Accordion key={id} allowMultiple position="relative">
               <AccordionItem>
                 <Box position="absolute" top="2" left="-2">
                   <SmallAddIcon />
@@ -83,7 +96,7 @@ const Accordionbox = ({ data }) => {
                         position="absolute"
                         bg="pink"
                         w="1px"
-                        h={el.pointer?.length - 1 === index ? "2rem" : "3rem"}
+                        h={el.pointer?.length - 1 === index ? "2rem" : "4rem"}
                         left="-3"
                         top="-3"
                       ></Box>
@@ -119,8 +132,21 @@ const Accordionbox = ({ data }) => {
                             <MenuList>
                               <MenuItem>Edit Category</MenuItem>
                               <MenuItem>Manage Access</MenuItem>
-                              <MenuItem colorScheme="red">Delete</MenuItem>
+                              <MenuItem
+                                onClick={() => {
+                                  oprate.onOpen();
+                                  setType("Delete Sub Category");
+                                }}
+                              >
+                                Delete
+                              </MenuItem>
                             </MenuList>
+                            <Delete
+                              onClose={oprate.onClose}
+                              isOpen={oprate.isOpen}
+                              title={type}
+                              index={index}
+                            />
                           </Menu>
                         </Flex>
                       </Box>
@@ -130,10 +156,17 @@ const Accordionbox = ({ data }) => {
                   <Flex gap="5">
                     <Button
                       leftIcon={<SmallAddIcon />}
-                      onClick={() => data.data.pointer}
+                      onClick={() => {
+                        addPointer.onOpen();
+                      }}
                     >
                       Add Pointer
                     </Button>
+                    <Create
+                      onClose={addPointer.onClose}
+                      isOpen={addPointer.isOpen}
+                      title={"Pointer Name"}
+                    />
                     <Button leftIcon={<SmallAddIcon />}>On Hover</Button>
                   </Flex>
                 </AccordionPanel>
