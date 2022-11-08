@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "name": "Marketing",
+      "teams": ["Arun", "Anuj", "Akash"],
+      "plans": [
+        {
+          "plan": "Google Drive",
+          "pointer": ["pointer 1", "pointer 1", "pointer 1"]
+        }
+      ]
+    },
+    {
+      "name": "Marketing",
+      "teams": ["Arun", "Anuj", "Akash"],
+      "plans": [
+        {
+          "plan": "Google Drive",
+          "pointer": ["pointer 1", "pointer 1", "pointer 1"]
+        }
+      ]
+    }
+  ]
+}
