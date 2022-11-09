@@ -35,12 +35,12 @@ const Create = ({ isOpen, onClose, title, add, setData, data }) => {
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="blue" variant="outline" mr={3} onClick={onClose}>
+          <Button colorScheme="red" variant="outline" mr={3} onClick={onClose}>
             Cancel
           </Button>
           <Button
-            variant="outline"
-            colorScheme="red"
+           
+            colorScheme="blue"
             onClick={() => {
               if (add === "main") {
                 const query = document.querySelector(".addme").value;
