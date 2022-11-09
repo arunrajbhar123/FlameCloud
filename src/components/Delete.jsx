@@ -9,11 +9,21 @@ import {
   Text,
   Box,
 } from "@chakra-ui/react";
-const Delete = ({ isOpen, onClose, title, index }) => {
+import dbdata from "../db.json";
+const Delete = ({
+  data,
+  isOpen,
+  onClose,
+  title,
+  index,
+  deleVal,
+  setData,
+  delVal2,
+}) => {
   return (
     <Modal w="100%" isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent bg="gray.100">
+      <ModalContent bg="#E2E8F0">
         <ModalHeader>{title}</ModalHeader>
 
         <ModalBody>
@@ -27,7 +37,34 @@ const Delete = ({ isOpen, onClose, title, index }) => {
           <Button colorScheme="blue" variant="outline" mr={3} onClick={onClose}>
             Cancel
           </Button>
-          <Button variant="outline" colorScheme="red">
+          <Button
+            variant="outline"
+            colorScheme="red"
+            onClick={() => {
+              if (title === "Delete Category") {
+                var dsa = dbdata.data?.filter((el, index) => {
+                  if (index !== deleVal) {
+                    return el;
+                  }
+                });
+                setData({ data: dsa });
+              } else {
+                var fds = dbdata.data?.filter((el, index) => {
+                  if (index !== deleVal) {
+                    el.plans.filter((va, ind) => {
+                      if (ind !== delVal2) {
+                       console.log(va);
+                      }
+                    });
+                  }
+                });
+                // setData({ data: fds });
+                console.log(fds);
+              }
+
+              onClose();
+            }}
+          >
             Delete
           </Button>
         </ModalFooter>

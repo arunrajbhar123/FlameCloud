@@ -23,8 +23,8 @@ export function BasicUsage({ isOpen, onClose, data }) {
           <ModalHeader>SOP Access</ModalHeader>
 
           <ModalBody>
-            {data?.map((el, index) => (
-              <Box key={index} >
+            {data?.data?.map((el, index) => (
+              <Box key={index}>
                 <Text
                   mb="2"
                   fontSize={"xl"}

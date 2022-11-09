@@ -23,10 +23,12 @@ import { HiEllipsisVertical } from "react-icons/hi2";
 import { useState } from "react";
 import Delete from "./Delete";
 import Create from "./Create";
-const Accordionbox = ({ data }) => {
+const Accordionbox = ({ setData, data, onOpen, num }) => {
   const [type, setType] = useState("");
   const oprate = useDisclosure();
   const addPointer = useDisclosure();
+  const [deleVal, setDeleVal] = useState();
+  const [deleVal2, setDeleVal2] = useState();
 
   return (
     <Accordion allowMultiple>
@@ -53,12 +55,12 @@ const Accordionbox = ({ data }) => {
               ></MenuButton>
               <MenuList>
                 <MenuItem>Edit Category</MenuItem>
-                <MenuItem>Manage Access</MenuItem>
+                <MenuItem onClick={onOpen}>Manage Access</MenuItem>
                 <MenuItem
-               
                   onClick={() => {
                     oprate.onOpen();
                     setType("Delete Category");
+                    setDeleVal(num);
                   }}
                 >
                   Delete
@@ -69,7 +71,7 @@ const Accordionbox = ({ data }) => {
           </AccordionButton>
         </h2>
         <AccordionPanel>
-          {data?.plans?.map((el,id) => (
+          {data?.plans?.map((el, id) => (
             <Accordion key={id} allowMultiple position="relative">
               <AccordionItem>
                 <Box position="absolute" top="2" left="-2">
@@ -94,15 +96,15 @@ const Accordionbox = ({ data }) => {
                     <Box position="relative" key={index}>
                       <Box
                         position="absolute"
-                        bg="pink"
+                        bg="#CBD5E0"
                         w="1px"
                         h={el.pointer?.length - 1 === index ? "2rem" : "4rem"}
                         left="-3"
                         top="-3"
                       ></Box>
-                      <Box bg="red" mb="2" p="2" rounded="5">
+                      <Box bg="#E2E8F0" mb="2" p="2" rounded="5">
                         <Box
-                          bg="pink"
+                          bg="#CBD5E0"
                           w="12px"
                           position="absolute"
                           h="1px"
@@ -135,6 +137,7 @@ const Accordionbox = ({ data }) => {
                               <MenuItem
                                 onClick={() => {
                                   oprate.onOpen();
+                                  setDeleVal2(index);
                                   setType("Delete Sub Category");
                                 }}
                               >
@@ -145,7 +148,10 @@ const Accordionbox = ({ data }) => {
                               onClose={oprate.onClose}
                               isOpen={oprate.isOpen}
                               title={type}
-                              index={index}
+                              deleVal={deleVal}
+                              data={data}
+                              setData={setData}
+                              deleVal2={deleVal2}
                             />
                           </Menu>
                         </Flex>

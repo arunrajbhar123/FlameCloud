@@ -5,13 +5,26 @@ import Accordionbox from "./components/Accordionbox";
 import dbData from "./db.json";
 import { BasicUsage } from "./components/BasicUsage";
 import { useDisclosure } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Create from "./components/Create";
+import Delete from "./components/Delete";
+import axios from "axios";
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [data, setData] = useState(dbData);
   const createoverlay = useDisclosure();
-  
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:8080")
+  //     .then((res) => {
+  //       setData(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+
   return (
     <Box px={[2, 4, 14]} py={[2, 4, 14]} maxW="1600px" m="auto">
       <Text fontSize={[10, 14]}>SOP</Text>
@@ -66,15 +79,24 @@ function App() {
             colorScheme="blue"
             size={["sm", "sm"]}
             display={["block", "none", "none"]}
+            onClick={() => {
+              createoverlay.onOpen();
+            }}
           >
             <SmallAddIcon rounded={2} />
           </Button>
         </Flex>
       </Flex>
       {data?.data?.map((el, index) => (
-        <Accordionbox data={el} key={index} />
+        <Accordionbox
+          data={el}
+          key={index}
+          num={index}
+          setData={setData}
+          onOpen={onOpen}
+        />
       ))}
-      <BasicUsage onClose={onClose} isOpen={isOpen} data={data.data} />
+      <BasicUsage onClose={onClose} isOpen={isOpen} data={data} />
     </Box>
   );
 }

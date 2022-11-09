@@ -14,7 +14,7 @@ const Create = ({ isOpen, onClose, title, add, setData, data }) => {
   return (
     <Modal w="100%" isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent bg="gray.100">
+      <ModalContent bg="#E2E8F0">
         <ModalHeader>{title}</ModalHeader>
 
         <ModalBody pt="-1">
